@@ -1,5 +1,5 @@
-final static int GRIDHEIGHT = 16;
-final static int GRIDWIDTH = 16;
+final static int GRIDHEIGHT = 46;
+final static int GRIDWIDTH = 46;
 
 float cellHeight;
 float cellWidth;
@@ -20,6 +20,7 @@ void setup() {
     cells[i] = new int[GRIDHEIGHT];
     for(int j = 0; j < GRIDHEIGHT; j++) {
       if (random(100) < 50) {
+      //if ((abs(i - GRIDWIDTH/2) < 3) && (abs(j - GRIDHEIGHT/2) < 5)) {
         cells[i][j] = 1;
       }
     }
@@ -39,23 +40,27 @@ void draw() {
       if (cells[i][j] > 0) {
         if (neighbors < 2) {
           newcells[i][j] = 0;
-        } else if ( (2 == neighbors) || (3 == neighbors) ) {
+        } else if ( (2 == neighbors) || (3 == neighbors)) {
+        
+        //if ( (2 == neighbors) || (3 == neighbors) || (4 == neighbors)) {
           newcells[i][j] = cells[i][j] + 1;
         } else if ( neighbors > 3 ) {
           newcells[i][j] = 0;
         }
       } else if (cells[i][j] == 0) {
-        if (3 == neighbors) {
+        //if ((1 == neighbors) || (2 == neighbors)  || (3 == neighbors)) {
+        //if ((2 == neighbors)  || (3 == neighbors)) {
+        if ((3 == neighbors)) {
           newcells[i][j] = 1;
         }
       }
       
-      fill(cells[i][j]*32, 0, cells[i][j]*128);
+      fill(cells[i][j]*32, 0, cells[i][j]*254);
       ellipse((i + 0.2)*cellWidth, (j + 0.2)*cellHeight,
           (i + 0.8)*cellWidth, (j + 0.8)*cellHeight);
     }
   }
-  if (random(100) < 20) {
+  if (random(100) < 0) {
     for( int i = 0; i < 10; i++ ) {
       newcells[floor(random(GRIDWIDTH))][floor(random(GRIDHEIGHT))] += 1;
     }
